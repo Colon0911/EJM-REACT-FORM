@@ -1,0 +1,29 @@
+
+Datos del Cliente:
+
+
+fecha-Datetime
+nombre-String
+cedula-String
+telefono-String
+direccion-string
+dueño de la parsela N-string
+nombre del Proyecto-String
+suddistrito-string
+firma-string
+fax-string
+correo-string
+direccion de notificaciones- string
+Observaciones-string
+
+Datos de la parcela:
+
+Area-string
+cultivo- string
+variedad-string
+rendimiento anterior- string
+dia- Datetime
+mes- Datetime
+año- Datetime
+
+

@@ -1,6 +1,13 @@
 @use 'variables'as v;
 @use 'base/mixins'as m;
 
+.prueba{
+  font-size: 2rem;
+
+  color:chartreuse;
+
+}
+
 *,
 *:before,
 *:after {
