@@ -14,8 +14,13 @@ const login2 = () => {
 
   const [validValues, setvalidValues] = useState(false);
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = (values) => {
+    let arrayseg = [values.target[0].value, values.target[1].value];
+
+    console.log(arrayseg);
+
     console.log(values);
+
     values.preventDefault();
 
     // {
@@ -25,7 +30,7 @@ const login2 = () => {
     // }
 
     // try {
-    //     const url = 'http://localhost:4000/clientes'
+    //      const url = 'http://localhost:4000/clientes'
     //     const response = await fetch(url, {
     //         method: 'POST',
     //         body: JSON.stringify(values),
@@ -55,7 +60,7 @@ const login2 = () => {
         {({ errors, touched }) => {
           return (
             <div className="senara-dashboard">
-              <form className="senara-content-sm-login" onSubmit={handleSubmit}>
+              <Form className="senara-content-sm-login">
                 <div className="senara-logo">
                   <div className="senara-img-logo" alt="" />
                 </div>
@@ -65,6 +70,12 @@ const login2 = () => {
                   Ingrese sus credenciales
                 </p>
 
+                {errors.email && touched.email ? (
+                  <>
+                    <a className="a">{errors.email}</a>
+                  </>
+                ) : null}
+
                 <Field
                   id="email"
                   type="email"
@@ -72,10 +83,12 @@ const login2 = () => {
                   placeholder="Usuario o Correo"
                   name="email"
                 />
-                {errors.email && touched.email ? (
-                  <Alerta type="error"> {errors.email} </Alerta>
-                ) : null}
 
+                {errors.password && touched.password ? (
+                  <>
+                    <a className="a"> {errors.password} </a>
+                  </>
+                ) : null}
                 <Field
                   id="password"
                   type="password"
@@ -84,9 +97,6 @@ const login2 = () => {
 "
                   name="password"
                 />
-                {errors.password && touched.password ? (
-                  <Alerta type="error"> {errors.password} </Alerta>
-                ) : null}
 
                 <button className="senara-btn-primary" type="submit">
                   Iniciar Secciòn
@@ -100,7 +110,7 @@ const login2 = () => {
                     ¿Olvidò la contraseña?
                   </a>
                 </div>
-              </form>
+              </Form>
 
               <footer className="senara-footer-decoration">
                 <div className="decoration-logo"></div>
