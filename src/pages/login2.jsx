@@ -12,16 +12,10 @@ const login2 = () => {
     password: Yup.string().required("Es requerida la contraseña"),
   });
 
-  const [validValues, setvalidValues] = useState(false);
-
   const handleSubmit = (values) => {
-    let arrayseg = [values.target[0].value, values.target[1].value];
-
-    console.log(arrayseg);
-
     console.log(values);
 
-    values.preventDefault();
+    ///values.preventDefault();
 
     // {
     //   values && values ? (
@@ -72,7 +66,7 @@ const login2 = () => {
 
                 {errors.email && touched.email ? (
                   <>
-                    <a className="a">{errors.email}</a>
+                    <a>{errors.email}</a>
                   </>
                 ) : null}
 
@@ -86,15 +80,14 @@ const login2 = () => {
 
                 {errors.password && touched.password ? (
                   <>
-                    <a className="a"> {errors.password} </a>
+                    <a> {errors.password} </a>
                   </>
                 ) : null}
                 <Field
                   id="password"
                   type="password"
                   className="loating-input:focus~.bar"
-                  placeholder="Contraseña
-"
+                  placeholder="Contraseña"
                   name="password"
                 />
 
@@ -103,7 +96,7 @@ const login2 = () => {
                 </button>
 
                 <div className="senara-actions">
-                  <a className="a" href="">
+                  <a className="a " href="">
                     Crear cuenta
                   </a>
                   <a className="a" href="">
