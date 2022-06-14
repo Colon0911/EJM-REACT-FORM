@@ -12,7 +12,7 @@ const login2 = () => {
       .required("El email es obligatorio"),
     password: Yup.string().required("Es requerida la contraseña"),
   });
-  const [validUsuario, setvalidUsuario] = useState(false);
+  const [validUsuario, setvalidUsuario] = useState();
 
   const handleSubmit = async (values) => {
     ///values.preventDefault();
@@ -21,7 +21,6 @@ const login2 = () => {
       .post(`http://localhost:5000/usuarioPrueba`, values)
       .then((res) => {
         console.log(res);
-        console.log(res.data.mensaje);
 
         if (res.status === 200) {
           setvalidUsuario(true);
@@ -29,6 +28,7 @@ const login2 = () => {
 
         console.log(validUsuario);
       })
+
       .catch((res) => console.log(res));
 
     // {
@@ -120,12 +120,6 @@ const login2 = () => {
                 </div>
               </Form>
 
-              {validUsuario === true ? (
-                <p className="alert-senara success">
-                  Inicio de seccion exitoso
-                </p>
-              ) : null}
-
               <footer className="senara-footer-decoration">
                 <div className="decoration-logo"></div>
               </footer>
@@ -133,6 +127,12 @@ const login2 = () => {
           );
         }}
       </Formik>
+
+      {validUsuario === true ? (
+        <p className="alert-senara success">Inicio de seccion exitoso</p>
+      ) : validUsuario === false ? (
+        <p className="alert-senara error">Usuario o contraseña incorrecta</p>
+      ) : null}
     </>
   );
 };
