@@ -1,20 +1,21 @@
-@use 'base/variables'as v;
-@use 'base/mixins'as m;
+@use "base/variables" as v;
+@use "base/mixins" as m;
 
 .senara-actions {
-    margin-top: 2rem;
-    @include m.tablet {
-        display: flex;
-        justify-content: flex-end;
-    }    
+  margin-top: 2rem;
+  @include m.tablet {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    a {
-        display: block;
-        text-align: center;
-        margin-bottom: 2rem;
-        color: v.$azulOscuro;
-        &:last-of-type {
-            margin-bottom: 0;
-        }
+  a {
+    display: block;
+
+    text-align: center;
+    margin-bottom: 2rem;
+    color: v.$azulOscuro;
+    &:last-of-type {
+      margin-bottom: 0;
     }
+  }
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../build/css/app.css";
@@ -11,11 +12,24 @@ const login2 = () => {
       .required("El email es obligatorio"),
     password: Yup.string().required("Es requerida la contraseña"),
   });
+  const [validUsuario, setvalidUsuario] = useState(false);
 
-  const handleSubmit = (values) => {
-    console.log(values);
-
+  const handleSubmit = async (values) => {
     ///values.preventDefault();
+
+    await axios
+      .post(`http://localhost:5000/usuarioPrueba`, values)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.mensaje);
+
+        if (res.status === 200) {
+          setvalidUsuario(true);
+        }
+
+        console.log(validUsuario);
+      })
+      .catch((res) => console.log(res));
 
     // {
     //   values && values ? (
@@ -54,7 +68,7 @@ const login2 = () => {
         {({ errors, touched }) => {
           return (
             <div className="senara-dashboard">
-              <Form className="senara-content-sm-login">
+              <Form className="senara-content-sm-login ">
                 <div className="senara-logo">
                   <div className="senara-img-logo" alt="" />
                 </div>
@@ -99,11 +113,18 @@ const login2 = () => {
                   <a className="a " href="">
                     Crear cuenta
                   </a>
+
                   <a className="a" href="">
                     ¿Olvidò la contraseña?
                   </a>
                 </div>
               </Form>
+
+              {validUsuario === true ? (
+                <p className="alert-senara success">
+                  Inicio de seccion exitoso
+                </p>
+              ) : null}
 
               <footer className="senara-footer-decoration">
                 <div className="decoration-logo"></div>
