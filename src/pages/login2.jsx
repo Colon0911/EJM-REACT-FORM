@@ -15,8 +15,6 @@ const login2 = () => {
   const [validUsuario, setvalidUsuario] = useState();
 
   const handleSubmit = async (values) => {
-    ///values.preventDefault();
-
     await axios
       .post(`http://localhost:5000/usuarioPrueba`, values)
       .then((res) => {
@@ -29,28 +27,11 @@ const login2 = () => {
         console.log(validUsuario);
       })
 
-      .catch((res) => console.log(res));
-
-    // {
-    //   values && values ? (
-    //     <Alerta type="success"> inicio de seccion exitoso </Alerta>
-    //   ) : null;
-    // }
-
-    // try {
-    //      const url = 'http://localhost:4000/clientes'
-    //     const response = await fetch(url, {
-    //         method: 'POST',
-    //         body: JSON.stringify(values),
-    //         headers: {
-    //             "Content-Type": 'application/json'
-    //         }
-    //     });
-    //     const resultado = await response.json();
-    //     console.log(resultado);
-    // } catch (error) {
-    //     console.log(error);
-    // }
+      .catch((res) => {
+        if (res.response.status === 401) {
+          setvalidUsuario(false);
+        }
+      });
   };
 
   return (
